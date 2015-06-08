@@ -42,7 +42,7 @@ public class AktivitaSachovnice extends Activity implements MenuItem.OnMenuItemC
 		super.onPrepareOptionsMenu(menu);
 		menu.clear();
 	    menu.add(Menu.NONE, 1, Menu.NONE, S.g("FLIP_BOARD")).setOnMenuItemClickListener(this);
-	    if (mView.mThinking) {
+	    if (mView.isPremyslim()) {
 	    	menu.add(Menu.NONE, 101, Menu.NONE, S.g("MOVE_NOW")).setOnMenuItemClickListener(this);
 			return true;
 		}

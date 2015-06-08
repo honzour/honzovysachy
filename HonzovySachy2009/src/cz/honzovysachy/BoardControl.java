@@ -49,7 +49,7 @@ import cz.honzovysachy.resouces.S;
 
 public class BoardControl extends View {
 	SavedTaskAndroid mSavedTaskAndroid;
-	boolean mThinking = false;
+	protected boolean mThinking = false;
 
 	int mFieldFrom;
 	int mFieldTo;
