@@ -21,7 +21,6 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.io.PrintWriter;
 import java.util.Vector;
 
 import android.app.Activity;
@@ -411,7 +410,7 @@ public class BoardControl extends View {
 			}
 			if (pgnData == null)
 				return;
-			mTask.savePNG(new PrintWriter(pgnData.mFileName),
+			mTask.savePNG(new DiacriticsFreePrintWriter(pgnData.mFileName),
 					true, pgnData);
 			dlg(S.g("SAVED_AS") + pgnData.mFileName + ".");
 		} catch (IOException e) {
