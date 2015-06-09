@@ -1,5 +1,7 @@
 package cz.honzovysachy;
 
+import java.util.Calendar;
+
 import cz.honzovysachy.pravidla.PGNHeaderData;
 import cz.honzovysachy.resouces.S;
 import android.app.Activity;
@@ -24,6 +26,12 @@ public class PGNSaveActivity extends Activity implements OnDateSetListener {
 	@Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        
+        Calendar c = Calendar.getInstance();
+        mYear = c.get(Calendar.YEAR);
+        mMonth = c.get(Calendar.MONTH);
+        mDay = c.get(Calendar.DAY_OF_MONTH);
+        
         this.setTitle(S.g("SAVE_PGN"));
         setContentView(R.layout.pgn_header);
         final Button save = (Button)findViewById(R.id.save);
@@ -116,6 +124,7 @@ public class PGNSaveActivity extends Activity implements OnDateSetListener {
             }
         });
         setResult(10, null);
+        onDateSet(null, mYear, mMonth,	mDay);
 	}
 	
 	   @Override
