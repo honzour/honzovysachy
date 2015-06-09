@@ -2,6 +2,8 @@ package cz.honzovysachy.pravidla;
 
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.OutputStream;
+import java.io.Writer;
 import java.util.Iterator;
 import java.util.Vector;
 
@@ -1608,30 +1610,30 @@ public class Task extends SavedTask {
 		return 0;
 	}
 	
-	
-	public static void putc(char c, FileOutputStream f) throws IOException {
+	/*
+	public static void putc(char c, OutputStream f) throws IOException {
 		f.write((int)c);
 	}
 	
-	public static void fputs(String s, FileOutputStream f)  throws IOException {
+	public static void fputs(String s, OutputStream f)  throws IOException {
 		for (int i = 0; i < s.length(); i++)
 			putc(s.charAt(i), f);
 	}
 	
-	public static void puts(String s, FileOutputStream f)  throws IOException {
+	public static void puts(String s, OutputStream f)  throws IOException {
 		fputs(s, f);
 		putc('\n', f);
-	}
+	}*/
 	
 	private static String removeQuotes(String s) {
 		return s.replace('"', ' ');
 	}
 	
-	public void savePNG(FileOutputStream f, boolean close, PGNHeaderData header) throws IOException {
+	public void savePNG(Writer w, boolean close, PGNHeaderData header) throws IOException {
 		String result = PGNHeaderData.RESULTS[0];
 		if (header.mResult > 0 && header.mResult < PGNHeaderData.RESULTS.length)
 			result = PGNHeaderData.RESULTS[header.mResult];
-		puts(
+		w.append(
 				"[Event \"" + removeQuotes(header.mEvent) + "\"]\n" +
 				"[Site \"" + removeQuotes(header.mSite) + "\"]\n" +
 				"[Date \"" + header.mYear + "." + header.mMonth + "." + header.mDay + "\"]\n" +
@@ -1642,22 +1644,26 @@ public class Task extends SavedTask {
 				"[WhiteElo \"" + header.mWhiteElo + "\"]\n" +
 				"[BlackElo \"" + header.mBlackElo + "\"]\n" +
 				"[PlyCount \"" + mGame.size() +"\"]\n"
-				, f);
+				);
 		int index = mIndexInGame;
 		while (mIndexInGame >= 0) {
 			tahniZpet(0, true, null);
 		}
 		while (mIndexInGame < index) {
 			if ((mIndexInGame & 1) == 1) {
-				fputs(Integer.toString((mIndexInGame + 3) / 2, 10) + ".", f);
-				putc(' ', f);
+				w.append(Integer.toString((mIndexInGame + 3) / 2, 10) + ".");
+				w.append(' ');
 			}
-			fputs(tah2Str(nalezPseudolegalniTahyVector(), ((ZasobnikStruct) mGame.elementAt(mIndexInGame + 1)).mTah, false), f);
-			if ((mIndexInGame & 7) == 6) putc('\n', f); else putc(' ', f);
+			w.append(tah2Str(nalezPseudolegalniTahyVector(), ((ZasobnikStruct) mGame.elementAt(mIndexInGame + 1)).mTah, false));
+			if ((mIndexInGame & 7) == 6) 
+				w.append('\n');
+			else
+				w.append(' ');
 			
 			tahni(0, true, false, null);
 		}
-		fputs(" " + result + "\n", f);
-		if (close) f.close();
+		w.append(" " + result + "\n");
+		if (close)
+			w.close();
 	}
 }
