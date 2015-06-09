@@ -22,6 +22,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -36,6 +37,17 @@ public class AktivitaSachovnice extends Activity implements MenuItem.OnMenuItemC
 	public static final String LOCALE_FILE = "/sdcard/strings_hs.txt";
 	
 	BoardControl mView;
+	
+	@Override
+	public boolean onKeyDown(int keycode, KeyEvent e) {
+	    switch(keycode) {
+	        case KeyEvent.KEYCODE_MENU:
+	        	invalidateOptionsMenu();
+	        	openOptionsMenu();
+	            return true;
+	    }
+	    return super.onKeyDown(keycode, e);
+	}
 	
 	@Override
 	public boolean onPrepareOptionsMenu(Menu menu) {
