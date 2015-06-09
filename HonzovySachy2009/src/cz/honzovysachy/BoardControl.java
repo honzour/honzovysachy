@@ -16,7 +16,6 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 
 package cz.honzovysachy;
 
-import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
