@@ -15,13 +15,10 @@ public class FlexibleLayout extends LinearLayout {
 		super(context, attrs);
 	}
 	
-	protected void onSizeChanged(int w, int h, int oldw, int oldh) {
-		//this.setOrientation(w < h ? HORIZONTAL : VERTICAL);
-		final int fw = w;
-		final int fh = h;
+	protected void onSizeChanged(final int w, final int h, int oldw, int oldh) {
 		new Handler().post(new Runnable() {
 			public void run() {
-				setOrientation(fw > fh ? HORIZONTAL : VERTICAL);
+				setOrientation(w > h ? HORIZONTAL : VERTICAL);
 			}
     	});
     }
