@@ -6,7 +6,6 @@
     <!-- The first tab - level -->
 
     <ScrollView
-        xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/level"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent" >
@@ -52,7 +51,6 @@
     <!-- The second tab - locale -->
 
     <ScrollView
-        xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/locale"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
