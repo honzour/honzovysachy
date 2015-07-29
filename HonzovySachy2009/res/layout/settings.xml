@@ -43,7 +43,7 @@
 
             <Button
                 android:id="@+id/oklevel"
-                android:layout_width="wrap_content"
+                android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:text="OK" />
         </LinearLayout>
@@ -108,7 +108,7 @@
 
             <Button
                 android:id="@+id/ok"
-                android:layout_width="wrap_content"
+                android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:text="OK" />
         </LinearLayout>
