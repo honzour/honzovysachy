@@ -102,6 +102,22 @@ public class AktivitaSachovnice extends Activity implements MenuItem.OnMenuItemC
         int i = pref.getInt(LOCALE, 1);
         S.init(i, LOCALE_FILE);
         setTitle();
+        findViewById(R.id.back).setOnClickListener(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				mView.undo();
+			}
+		});
+        
+        findViewById(R.id.forward).setOnClickListener(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				mView.redo();
+			}
+		});
+        
         mView = (BoardControl)findViewById(R.id.chess_board);
         mView.mActivity = this;
         CheckBox cWhite = (CheckBox)findViewById(R.id.board_setting_white);
